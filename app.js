@@ -45,7 +45,10 @@ async function main(genId, url, n, watermark) {
         generations[genId] = { status: "Failed" };
         return
     }
-    
+
+	const downloadTest = await downloadHighlight("Clip", id, 60, 50)
+    console.log(downloadTest);
+	
     let transcript;
 	try {
 		console.log("Trying to get trasncript")
