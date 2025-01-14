@@ -1,15 +1,20 @@
 const axios = require('axios');
 const xml2js = require('xml2js');
 const he = require('he');
+const { YoutubeTranscript } = require('youtube-transcript');
+
 
 async function getText(videoId) {
     console.log(videoId)
-    
+    YoutubeTranscript.fetchTranscript('https://www.youtube.com/watch?v=Pr0tPxEpFjo').then(console.log);
+    return null
+    /*
     return new Promise(async (resolve, reject) => {
         try { 
 
             const videoUrl = `https://youtu.be/${videoId}`;
             const response = await axios.get(videoUrl, {
+                proxy: proxy,
                 headers: {
                   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
                 }
@@ -73,9 +78,12 @@ async function getText(videoId) {
             return null;
         }
     });
+    */
+
+
 }
 
-//const videoId = "lx2nFfwM8cI";
-//getText(videoId);
+const videoId = "lx2nFfwM8cI";
+getText(videoId);
 
 module.exports = getText;

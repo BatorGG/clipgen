@@ -29,6 +29,7 @@
     "openai": "^4.78.1",
     "stripe": "^17.5.0",
     "xml2js": "^0.6.2",
+    "youtube-transcript": "^1.2.1",
     "yt-dlp-wrap": "^2.3.12",
     "ytdl-core": "npm:@distube/ytdl-core@^4.15.8"
   }
