@@ -30,23 +30,30 @@ async function main(genId, url, n, watermark) {
     
 	let id
 	try {
+		console.log("Trying to get id")
 		id = getYouTubeVideoId(url);
+		console.log("ID is", id)
 	}
 	catch(error) {
+		console.log("Failed to get id")
 		console.log(error);
 		generations[genId] = { status: "Failed" };
 		return
 	}
     if (!id) {
+		console.log("Failed to get id")
         generations[genId] = { status: "Failed" };
         return
     }
     
     let transcript;
 	try {
+		console.log("Trying to get trasncript")
 		transcript = await getText(id)
+		console.log(transcript)
 	}
 	catch(error) {
+		console.log("Failed to get transcritp")
 		console.log(error)
 		generations[genId] = { status: "Failed" };
 		return
