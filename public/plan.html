@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Select - ReelHive</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <meta name="description" content="Turn long form youtube videos into viral-ready clips with ReelHive!">
+    <meta name="keywords" content="reelhive, clip generator, clip editor, viral clips, viral">
+    <meta name="robots" content="noindex">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo"><img src="./images/favicon.png">Frameza</div>
+        <button class="get-started-btn" onclick="window.location.href='/dashboard'">Dashboard</button>
+    </div>
+    <div class="container">
+        <h1 id="yourPlan"></h1>
+    </div>
+
+    <div class="pricing-container">
+        <table class="pricing-table">
+            <tr>
+                <th></th>
+                <th>Starter</th>
+                <th>Pro</th>
+            </tr>
+            <tr>
+                <td>Input video max length</td>
+                <td>20 minutes</td>
+                <td>1 hour 30 minutes</td>
+            </tr>
+            <tr>
+                <td>Max clips per generation</td>
+                <td>1</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Automatic subtitles</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Watermark</td>
+                <td>Watermark</td>
+                <td>No watermark</td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>Free</td>
+                <td>$19.99</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="get-started-btn" id="cancel">Select</button></td>
+                <td><button class="get-started-btn" id="checkout">Select</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <p id="errorText"></p>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

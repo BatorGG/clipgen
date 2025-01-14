@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Register - ReelHive</title>
+    <meta name="description" content="Turn long form youtube videos into viral-ready clips with ReelHive!">
+    <meta name="keywords" content="reelhive, clip generator, clip editor, viral clips, viral">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo"><img src="./images/favicon.png">ReelHive</div>
+        <button class="get-started-btn" onclick="goToLogin()">Login</button>
+    </div>
+
+    <div class="login">
+        <h1>Register</h1>
+        <p id="error-message"></p>
+        <input id="username" type="text" placeholder="Email address">
+        <input id="password" type="password" placeholder="Password">
+        <input id="passwordAgain" type="password" placeholder="Password again">
+        <button id="register">Register</button>
+        <a href="/login">
+            <p class="no-account">Have an acount? <u class="underlined">Click here!</u></p>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

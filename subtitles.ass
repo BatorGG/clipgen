@@ -1,0 +1,30 @@
+[Script Info]
+    Title: Generated Subtitles
+    ScriptType: v4.00+
+    PlayDepth: 0
+    
+    [V4+ Styles]
+    Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+    Style: Default,Arial,12,&H00FFFFFF,&H00000000,&H000000FF,&H64000000,1,0,0,0,100,100,0,0,1,2,1,2,10,10,40,1
+    
+    [Events]
+    Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,00:00:16.27,00:00:20.44,Default,,0,0,0,,lesz látom hog kameráz nem kell
+Dialogue: 0,00:00:20.44,00:00:25.16,Default,,0,0,0,,[Zene]
+Dialogue: 0,00:00:25.16,00:00:30.56,Default,,0,0,0,,te te szma vagy te sigma vagy barátom
+Dialogue: 0,00:00:36.40,00:00:38.23,Default,,0,0,0,,[Zene]
+Dialogue: 0,00:00:38.23,00:00:41.00,Default,,0,0,0,,mi a amúy meg van barátom nem baj
+Dialogue: 0,00:00:41.00,00:00:45.20,Default,,0,0,0,,az nem baj ugye baj nem baj a nem baj az
+Dialogue: 0,00:00:45.20,00:00:48.00,Default,,0,0,0,,hát az nem baj na basd meg ugye mennénk
+Dialogue: 0,00:00:48.00,00:00:50.39,Default,,0,0,0,,forgatni aztán ezt kapjátok ki mit
+Dialogue: 0,00:00:50.39,00:00:54.00,Default,,0,0,0,,kapott be a csapat forgatás előtt ezért
+Dialogue: 0,00:00:54.00,00:00:57.15,Default,,0,0,0,,kések mert egy trolli
+Dialogue: 0,00:00:57.15,00:01:00.96,Default,,0,0,0,,karambolozott ezzel az autóval és
+Dialogue: 0,00:01:00.96,00:01:03.87,Default,,0,0,0,,itt az autó a izé közepén az egész útnak
+Dialogue: 0,00:01:03.87,00:01:06.43,Default,,0,0,0,,a közepére becllutcholt egy karambolt és
+Dialogue: 0,00:01:06.43,00:01:09.64,Default,,0,0,0,,akkora izé késés lesz ebből a sútolásból
+Dialogue: 0,00:01:09.64,00:01:12.87,Default,,0,0,0,,mer egyébként a mai nap karácsonyi
+Dialogue: 0,00:01:12.87,00:01:15.35,Default,,0,0,0,,vásárra fogunk menni hoppá elindulhatunk
+Dialogue: 0,00:01:15.35,00:01:19.04,Default,,0,0,0,, nézd meg ezt az embert
+Dialogue: 0,00:01:19.04,00:01:21.92,Default,,0,0,0,,is
+Dialogue: 0,00:01:21.92,00:01:27.56,Default,,0,0,0,,brutális tudod mit jó lesz itt az intro
