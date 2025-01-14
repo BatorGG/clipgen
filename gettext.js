@@ -9,7 +9,11 @@ async function getText(videoId) {
         try { 
 
             const videoUrl = `https://youtu.be/${videoId}`;
-            const response = await axios.get(videoUrl);
+            const response = await axios.get(videoUrl, {
+                headers: {
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+              });
 
             // Step 2: Extract the timed text URL from the response
             const timedTextRegex = /(?:timedtext\?v=([^&]+))/g; // Look for timedtext URL
@@ -24,7 +28,11 @@ async function getText(videoId) {
 
             const fullUrl = "https://www.youtube.com/api/" + formattedUrl
 
-            const transcriptResponse = await axios.get(fullUrl);
+            const transcriptResponse = await axios.get(fullUrl, {
+                headers: {
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+              });
             const xml = transcriptResponse.data;
 
             // Step 5: Parse the XML
