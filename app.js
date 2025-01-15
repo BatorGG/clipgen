@@ -514,6 +514,16 @@ const checkPermissions = () => {
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+
+	const command = "sudo apt install python3-pycryptodome"
+	exec(command, (error, stdout, stderr) => {
+        if (error) {
+          console.error('Error downloading the file:', error.message);
+        } else {
+          console.log('File downloaded successfully.');
+        }
+      });
+
 	
 	fs.access(binFolderPath, fs.constants.F_OK, (err) => {
 		if (err) {
@@ -523,5 +533,5 @@ app.listen(port, () => {
 		  checkAndDownloadFile();
 		}
 	  });
-	  
+
 });
