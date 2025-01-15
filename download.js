@@ -13,7 +13,8 @@ async function downloadYoutubeSection({
 }) {
   return new Promise((resolve, reject) => {
       const binPath = path.join(process.cwd(), 'bin');
-      const ytDlpPath = path.join(binPath, 'yt-dlp_linux');
+      const ytDlpPath = path.join(binPath, 'yt-dlp.exe');
+      const cookiesPath = path.join(binPath, 'cookies.txt');
 
       // Create temporary filenames for video and audio
       const tempDir = path.dirname(outputPath);
@@ -32,6 +33,7 @@ async function downloadYoutubeSection({
           '--force-keyframes-at-cuts',  // Force keyframe at cut points
           '--external-downloader', 'ffmpeg',  // Use FFmpeg for downloading
           '--external-downloader-args', `ffmpeg_i:-ss ${startTime} -t ${calculateDuration(startTime, endTime)}`,  // Precise cutting
+          '--cookies', cookiesPath,
           '-o', tempVideo
       ]);
 
@@ -61,6 +63,7 @@ async function downloadYoutubeSection({
                   '--force-keyframes-at-cuts',
                   '--external-downloader', 'ffmpeg',
                   '--external-downloader-args', `ffmpeg_i:-ss ${startTime} -t ${calculateDuration(startTime, endTime)}`,
+                  '--cookies', cookiesPath,
                   '-o', tempAudio
               ]);
 
