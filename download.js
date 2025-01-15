@@ -47,8 +47,6 @@ async function downloadYoutubeSection({
           '--no-playlist',
           '--ffmpeg-location', ffmpegPath,
           '-f', 'bv*[height<=720][fps<=30]',  // Use WebM format at 720p 30fps
-          '--download-sections', `*${startTime}-${endTime}`,
-          '--force-keyframes-at-cuts',  // Force keyframe at cut points
           '--cookies', cookiesPath,
           '-o', tempVideo
       ]);
