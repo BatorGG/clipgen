@@ -515,7 +515,9 @@ const checkPermissions = () => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 
-	const command = "./bin/yt-dlp_linux -U"
+	const binPath = path.join(process.cwd(), 'bin');
+	const ytDlpPath = path.join(binPath, 'yt-dlp_linux');
+	const command = ytDlpPath + " -U"
 	exec(command, (error, stdout, stderr) => {
         if (error) {
           console.error('Error downloading the file:', error.message);
