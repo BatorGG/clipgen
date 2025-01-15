@@ -21,6 +21,12 @@ async function downloadYoutubeSection({
       const tempVideo = path.join(tempDir, `temp_video_${fileName}.mp4`);
       const tempAudio = path.join(tempDir, `temp_audio_${fileName}.m4a`);
 
+      checkPermissions(ffmpegPath, 'FFmpeg binary');
+      fs.writeFileSync(tempVideo, ''); // Create empty file if it doesn't exist
+        fs.writeFileSync(tempAudio, ''); // Create empty file if it doesn't exist
+        checkPermissions(tempVideo, 'Temporary video file');
+        checkPermissions(tempAudio, 'Temporary audio file');
+
       console.log('Downloading video stream...');
       const downloadVideo = spawn(ytDlpPath, [
           videoUrl,
@@ -175,6 +181,24 @@ async function downloadHighlight(fileName, id, start, dur) {
             console.error('Error:', error);
             reject(null)
             return null
+        }
+    });
+}
+
+function checkPermissions(filePath, description) {
+    console.log(`Checking permissions for: ${description}`);
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            console.error(`${description} does not exist.`);
+        } else {
+            console.log(`${description} exists.`);
+            fs.access(filePath, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+                if (err) {
+                    console.error(`${description} is not readable/writable.`);
+                } else {
+                    console.log(`${description} is readable and writable.`);
+                }
+            });
         }
     });
 }
