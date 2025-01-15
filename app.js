@@ -507,15 +507,7 @@ const checkPermissions = () => {
       console.log('The yt-dlp_linux file does not have executable permissions.');
     } else {
       console.log('The yt-dlp_linux file has executable permissions.');
-    }
-  });
-};
-
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-
-	const binPath = path.join(process.cwd(), 'bin');
+	  const binPath = path.join(process.cwd(), 'bin');
 	const ytDlpPath = path.join(binPath, 'yt-dlp_linux');
 	const command = ytDlpPath + " -U"
 	exec(command, (error, stdout, stderr) => {
@@ -525,6 +517,13 @@ app.listen(port, () => {
           console.log('File downloaded successfully.');
         }
       });
+    }
+  });
+};
+
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 
 	
 	fs.access(binFolderPath, fs.constants.F_OK, (err) => {
