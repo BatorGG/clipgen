@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { verifyToken } = require('./jwtUtils');
 const fs = require("fs");
+const { exec } = require('child_process');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -474,34 +475,53 @@ app.get('/privacy', (req, res) => {
 
 const binFolderPath = path.join(__dirname, 'bin');
 const filePath = path.join(binFolderPath, 'yt-dlp_linux');
+const fileUrl = 'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux';
+
+// Function to check the file and permissions
+const checkAndDownloadFile = () => {
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      console.log('The yt-dlp_linux file does not exist. Downloading...');
+
+      // Download the file
+      const command = `curl -L ${fileUrl} -o ${filePath} && chmod +x ${filePath}`;
+      exec(command, (error, stdout, stderr) => {
+        if (error) {
+          console.error('Error downloading the file:', error.message);
+        } else {
+          console.log('File downloaded successfully.');
+          checkPermissions();
+        }
+      });
+    } else {
+      console.log('The yt-dlp_linux file exists.');
+      checkPermissions();
+    }
+  });
+};
+
+// Function to check permissions
+const checkPermissions = () => {
+  fs.access(filePath, fs.constants.X_OK, (err) => {
+    if (err) {
+      console.log('The yt-dlp_linux file does not have executable permissions.');
+    } else {
+      console.log('The yt-dlp_linux file has executable permissions.');
+    }
+  });
+};
 
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
-	// 1. Check if the bin folder exists
-fs.access(binFolderPath, fs.constants.F_OK, (err) => {
-	if (err) {
-	  console.log('The bin folder does not exist.');
-	} else {
-	  console.log('The bin folder exists.');
-  
-	  // 2. Check if the file exists in the bin folder
-	  fs.access(filePath, fs.constants.F_OK, (err) => {
+	
+	fs.access(binFolderPath, fs.constants.F_OK, (err) => {
 		if (err) {
-		  console.log('The yt-dlp_linux file does not exist.');
+		  console.log('The bin folder does not exist. Please create it.');
 		} else {
-		  console.log('The yt-dlp_linux file exists.');
-  
-		  // 3. Check if the file has executable permissions
-		  fs.access(filePath, fs.constants.X_OK, (err) => {
-			if (err) {
-			  console.log('The yt-dlp_linux file does not have executable permissions.');
-			} else {
-			  console.log('The yt-dlp_linux file has executable permissions.');
-			}
-		  });
+		  console.log('The bin folder exists.');
+		  checkAndDownloadFile();
 		}
 	  });
-	}
-  });
+	  
 });
