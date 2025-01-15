@@ -25,6 +25,20 @@ async function downloadYoutubeSection({
       testFFmpeg();
 
       console.log('Downloading video stream...');
+      console.log('Executing yt-dlp command:', ytDlpPath, [
+        videoUrl,
+        '--add-header', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+        '--no-mtime',
+        '--no-playlist',
+        '--ffmpeg-location', ffmpegPath,
+        '-f', 'bv*[height<=720][fps<=30]',
+        '--download-sections', `*${startTime}-${endTime}`,
+        '--force-keyframes-at-cuts',
+        '--external-downloader', 'ffmpeg',
+        '--external-downloader-args', `ffmpeg_i:-ss ${startTime} -t ${calculateDuration(startTime, endTime)}`,
+        '--cookies', cookiesPath,
+        '-o', tempVideo,
+    ]);
       const downloadVideo = spawn(ytDlpPath, [
           videoUrl,
           '--add-header', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
