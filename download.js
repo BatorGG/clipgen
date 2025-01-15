@@ -22,10 +22,6 @@ async function downloadYoutubeSection({
       const tempAudio = path.join(tempDir, `temp_audio_${fileName}.m4a`);
 
       checkPermissions(ffmpegPath, 'FFmpeg binary');
-      fs.writeFileSync(tempVideo, ''); // Create empty file if it doesn't exist
-        fs.writeFileSync(tempAudio, ''); // Create empty file if it doesn't exist
-        checkPermissions(tempVideo, 'Temporary video file');
-        checkPermissions(tempAudio, 'Temporary audio file');
 
       console.log('Downloading video stream...');
       const downloadVideo = spawn(ytDlpPath, [
