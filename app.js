@@ -472,8 +472,36 @@ app.get('/privacy', (req, res) => {
 });
 
 
+const binFolderPath = path.join(__dirname, 'bin');
+const filePath = path.join(binFolderPath, 'yt-dlp_linux');
 
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+	// 1. Check if the bin folder exists
+fs.access(binFolderPath, fs.constants.F_OK, (err) => {
+	if (err) {
+	  console.log('The bin folder does not exist.');
+	} else {
+	  console.log('The bin folder exists.');
+  
+	  // 2. Check if the file exists in the bin folder
+	  fs.access(filePath, fs.constants.F_OK, (err) => {
+		if (err) {
+		  console.log('The yt-dlp_linux file does not exist.');
+		} else {
+		  console.log('The yt-dlp_linux file exists.');
+  
+		  // 3. Check if the file has executable permissions
+		  fs.access(filePath, fs.constants.X_OK, (err) => {
+			if (err) {
+			  console.log('The yt-dlp_linux file does not have executable permissions.');
+			} else {
+			  console.log('The yt-dlp_linux file has executable permissions.');
+			}
+		  });
+		}
+	  });
+	}
+  });
 });
