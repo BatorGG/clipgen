@@ -40,16 +40,18 @@ async function downloadYoutubeSection({
     ]);
 
       const downloadVideo = spawn(ytDlpPath, [
-          '--verbose',
-          videoUrl,
-          '--add-header', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-          '--no-mtime',
-          '--no-playlist',
-          '--ffmpeg-location', ffmpegPath,
-          '-f', 'bv*[height<=720][fps<=30]',  // Use WebM format at 720p 30fps
-          '--cookies', cookiesPath,
-          '-o', tempVideo
-      ]);
+        '--verbose',
+        videoUrl,
+        '--add-header', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+        '--no-mtime',
+        '--no-playlist',
+        '--ffmpeg-location', ffmpegPath,
+        '-f', 'bv*[height<=720][fps<=30]',
+        '--download-sections', `*${startTime}-${endTime}`,
+        '--force-keyframes-at-cuts',
+        '--cookies', cookiesPath,
+        '-o', tempVideo
+    ]);
 
       downloadVideo.stdout.on('data', (data) => {
           const output = data.toString();
