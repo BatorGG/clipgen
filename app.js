@@ -515,7 +515,7 @@ const checkPermissions = () => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 
-	const command = "sudo apt install python3-pycryptodome"
+	const command = "./bin/yt-dlp_linux -U"
 	exec(command, (error, stdout, stderr) => {
         if (error) {
           console.error('Error downloading the file:', error.message);
