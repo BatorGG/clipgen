@@ -50,7 +50,6 @@ async function downloadYoutubeSection({
           '--download-sections', `*${startTime}-${endTime}`,
           '--force-keyframes-at-cuts',  // Force keyframe at cut points
           '--external-downloader', 'ffmpeg',  // Use FFmpeg for downloading
-          '--external-downloader-args', `ffmpeg_i:-ss ${startTime} -t ${calculateDuration(startTime, endTime)}`,  // Precise cutting
           '--cookies', cookiesPath,
           '-o', tempVideo
       ]);
