@@ -13,7 +13,7 @@ async function downloadYoutubeSection({
 }) {
   return new Promise((resolve, reject) => {
       const binPath = path.join(process.cwd(), 'bin');
-      const ytDlpPath = path.join(binPath, 'yt-dlp.exe');
+      const ytDlpPath = path.join(binPath, 'yt-dlp_linux');
       const cookiesPath = path.join(binPath, 'cookies.txt');
 
       // Create temporary filenames for video and audio
