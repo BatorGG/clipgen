@@ -22,10 +22,7 @@ async function downloadYoutubeSection({
       const tempAudio = path.join(tempDir, `temp_audio_${fileName}.m4a`);
 
       checkPermissions(ffmpegPath, 'FFmpeg binary');
-      fs.writeFileSync(tempVideo, ''); // Create empty file if it doesn't exist
-fs.writeFileSync(tempAudio, ''); // Create empty file if it doesn't exist
-checkPermissions(tempVideo, 'Temporary video file');
-checkPermissions(tempAudio, 'Temporary audio file');
+      testFFmpeg();
 
       console.log('Downloading video stream...');
       const downloadVideo = spawn(ytDlpPath, [
@@ -202,5 +199,60 @@ function checkPermissions(filePath, description) {
         }
     });
 }
+
+function testFFmpeg() {
+    console.log(`Testing FFmpeg at path: ${ffmpegPath}`);
+  
+    // Test 1: Check FFmpeg version
+    const versionTest = spawn(ffmpegPath, ['-version']);
+  
+    versionTest.stdout.on('data', (data) => {
+      console.log(`FFmpeg Version Output:\n${data.toString()}`);
+    });
+  
+    versionTest.stderr.on('data', (data) => {
+      console.error(`FFmpeg Version Error Output:\n${data.toString()}`);
+    });
+  
+    versionTest.on('close', (code) => {
+      if (code === 0) {
+        console.log('FFmpeg version test succeeded.');
+        testFFmpegFunctionality(); // Proceed to functionality test
+      } else {
+        console.error(`FFmpeg version test failed with code: ${code}`);
+      }
+    });
+  }
+  
+  function testFFmpegFunctionality() {
+    console.log('Testing FFmpeg functionality...');
+  
+    const testOutput = path.join(process.cwd(), 'test_video.mp4');
+  
+    // Generate a 5-second test video
+    const functionalityTest = spawn(ffmpegPath, [
+      '-f', 'lavfi',                 // Use FFmpeg's internal test source
+      '-i', 'testsrc=size=128x128:rate=1', // Simple test video
+      '-t', '5',                     // Duration: 5 seconds
+      testOutput                     // Output file
+    ]);
+  
+    functionalityTest.stdout.on('data', (data) => {
+      console.log(`FFmpeg Functional Test Output:\n${data.toString()}`);
+    });
+  
+    functionalityTest.stderr.on('data', (data) => {
+      console.error(`FFmpeg Functional Test Error Output:\n${data.toString()}`);
+    });
+  
+    functionalityTest.on('close', (code) => {
+      if (code === 0) {
+        console.log(`FFmpeg functionality test succeeded. Test video created at: ${testOutput}`);
+      } else {
+        console.error(`FFmpeg functionality test failed with code: ${code}`);
+      }
+    });
+  }
+  
 
 module.exports = downloadHighlight;
